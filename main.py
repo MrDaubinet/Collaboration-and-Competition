@@ -36,11 +36,11 @@ torch.manual_seed(seed)
 maddpg = MADDPG(env, state_size, action_size, num_agents, seed)
 
 # train agent
-scores, average_scores_list = maddpg.train(n_episodes=5000)
+# scores, average_scores_list = maddpg.train(n_episodes=5000)
 
-info.plotResults(scores, average_scores_list) # plot the scores
+# info.plotResults(scores, average_scores_list) # plot the scores
 
 # test best agent
-# maddpg.test(env, state_size)
+maddpg.test(env, state_size)
 
 

@@ -50,7 +50,7 @@ from unityagents import UnityEnvironment
 env = UnityEnvironment(file_name='location of tennis.exe')
 ```
 
-Info about the environment is printed out through the ```Info()``` class found [here]()  as seen below:
+Info about the environment is printed out through the ```Info()``` class found [here](https://github.com/MrDaubinet/collaboration-and-competition/blob/master/info.py)  as seen below:
 ```
 Unity Academy name: Academy
 Number of Brains: 1
@@ -113,7 +113,7 @@ Similar to the reasoning pointed out in the previous [Continuous Control](https:
 
 I copied the Actor and Critic models, as [found here](https://github.com/MrDaubinet/Continuous-Control/blob/master/model.py), but I removed batch normalization from the actor model and changed the critics input shape to accept states and actions from both agents. I copied the agent code, [found here](https://github.com/MrDaubinet/Continuous-Control/blob/master/agent.py), then changed it to accomidate a single environment, where both agents share the critic model.
 
-The ```Maddpg()``` code can be [found here]() resulting DDPG algorithm can be seen below:
+The ```MADDPG()``` code can be [found here](https://github.com/MrDaubinet/collaboration-and-competition/blob/master/maddpg.py) resulting DDPG algorithm can be seen below:
 ```python
     def train(self, n_episodes=5000, max_t=int(1000)):
         scores_deque = deque(maxlen=100)
@@ -160,24 +160,7 @@ The ```Maddpg()``` code can be [found here]() resulting DDPG algorithm can be se
 ```
 
 ## 4. Results
-My algorithm was able to solve the environment in 23 episodes with an average of 31.8 over the first 100 episodes. Check the graph below to see how it trained.
-![real robots][image4]
-```
-Episode 100     Average score: 0.001
-Episode 200     Average score: 0.003
-Episode 300     Average score: 0.006
-Episode 400     Average score: 0.018
-Episode 500     Average score: 0.033
-Episode 600     Average score: 0.057
-Episode 700     Average score: 0.111
-Episode 800     Average score: 0.118
-Episode 900     Average score: 0.125
-Episode 1000    Average score: 0.173
-Episode 1100    Average score: 0.173
-Episode 1200    Average score: 0.169
-Episode 1300    Average score: 0.303
-Episode 1362    Average Score: 0.456
-```
+The model was not very consistent in achieving the required score (0.5) and often when it did, it would proceed to decrease in score drastically if left to train more. In one one of the better runs, it was able to achieve the result in around 1000 epochs, in others it could take longer. Worst of all, in allot of approached, the average moving score would gradually increase and then suddenly drop and become terrible
 
 ```
 # plot the scores
@@ -190,10 +173,17 @@ plt.xlabel('Episode #')
 plt.legend(loc='upper left');
 plt.show()
 ```
-![Result Agent][image5]
+![Results](images/score.png)
 
+
+To see one of them in action check the gif below.
+
+![real world image](images/baseline.gif )
+
+Not the smartest kids on the block, they met "minimum requirements", but they don't seem all that great. It could be that these guys trained for too long and become unstable, clearly room for improvement. 
 
 ## 5. Ideas for Future Work
+* **Code Improvements** - I think the models could be made more robust, perhaps with a different approach to implementing MADDPG and how the shared buffer is used.  
 * **Hyperparameter optimization** - Most algorithms can be tweeked to perform better for specific environments when by changeing the various hyper parameters. This could be investigated to find a more effective agent.
 * **Priority Experience Replay** - Prioritized experience replay selects experiences based on a priority value that is correlated with the magnitude of error. This replaces the random selection of experiences with an approach that is more intelligent, as described in [this paper](https://arxiv.org/pdf/1511.05952.pdf). 
 

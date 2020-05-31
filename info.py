@@ -36,7 +36,7 @@ class Info:
   def plotResults(self, scores, avgs, scores_path="scores.png"):
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    plt.plot(np.arange(len(scores)), scores, label='DDPG')
+    plt.plot(np.arange(len(scores)), scores, label='MADDPG')
     plt.plot(np.arange(len(scores)), avgs, c='r', label='moving avg')
     plt.ylabel('Score')
     plt.xlabel('Episode #')
