@@ -1,4 +1,4 @@
-# Project 3: Continuous Control
+# Project 3: Collaboration and Competition
 ## Train two agents to play tennis against one another
 
 
